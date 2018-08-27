@@ -7,7 +7,7 @@ public class LoginPresenterImpl implements LoginPresenter {
 
     public LoginPresenterImpl(LoginView loginView) {
         this.mLoginView = loginView;
-        mLoginModel = new LoginModelImpl();
+        mLoginModel = new LoginModelImpl(loginView);
     }
 
     @Override

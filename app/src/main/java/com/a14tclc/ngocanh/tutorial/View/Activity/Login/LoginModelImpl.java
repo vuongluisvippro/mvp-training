@@ -2,6 +2,7 @@ package com.a14tclc.ngocanh.tutorial.View.Activity.Login;
 
 import android.util.Log;
 
+import com.a14tclc.ngocanh.tutorial.Response.UserData;
 import com.a14tclc.ngocanh.tutorial.Response.UserResponse;
 import com.a14tclc.ngocanh.tutorial.Service.TutorialAppApi;
 
@@ -10,11 +11,12 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LoginModelImpl implements LoginModel {
-
+    private LoginView mLoginView;
     private TutorialAppApi mTutorialAppApi;
 
-    public LoginModelImpl() {
+    public LoginModelImpl(LoginView loginView) {
         mTutorialAppApi = TutorialAppApi.Factory.create();
+        this.mLoginView = loginView;
     }
 
     @Override
@@ -38,7 +40,13 @@ public class LoginModelImpl implements LoginModel {
                  */
                 Log.i("TAG", userResponse.getError().getStatus());
                 Log.i("TAG", userResponse.getError().getDescription());
-
+                for (UserData userData : userResponse.getUserData()) {
+                    if ((userData.getEmail()).equals(username)) {
+                        mLoginView.showToast("Success");
+                        break;
+                    }
+                }
+                mLoginView.showToast("Failed");
                 /**
                  * Get list of users
                  */
