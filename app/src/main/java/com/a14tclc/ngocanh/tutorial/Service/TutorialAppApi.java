@@ -1,4 +1,4 @@
-package com.a14tclc.ngocanh.tutorial.service;
+package com.a14tclc.ngocanh.tutorial.Service;
 
 import com.a14tclc.ngocanh.tutorial.Response.UserResponse;
 import com.a14tclc.ngocanh.tutorial.Util.Constant;
