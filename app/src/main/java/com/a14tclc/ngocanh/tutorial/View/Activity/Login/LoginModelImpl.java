@@ -38,15 +38,20 @@ public class LoginModelImpl implements LoginModel {
                 /**
                  * Show information of Object Error:
                  */
+                boolean checkLogin = false;
                 Log.i("TAG", userResponse.getError().getStatus());
                 Log.i("TAG", userResponse.getError().getDescription());
                 for (UserData userData : userResponse.getUserData()) {
                     if ((userData.getEmail()).equals(username)) {
-                        mLoginView.showToast("Success");
-                        break;
+                        checkLogin = true;
                     }
                 }
-                mLoginView.showToast("Failed");
+                if(checkLogin){
+                    mLoginView.showToast("Success");
+                } else {
+                    mLoginView.showToast("Failed");
+                }
+
                 /**
                  * Get list of users
                  */
